@@ -685,10 +685,8 @@ function _fnGetUniqueThs(oSettings, nHeader, aLayout) {
 
 /**
  * Get all columns name from table thead child
- * if thead contains case attribute than convert column names to
- * taht case or else convert default to lower  case
+ * convert column names default to lower  case
  * return an array of column name objects
- * set unserchable ,unsortable and exportable columns of datatable
  *
  * @param {object} tHeadRow header row of html table
  */

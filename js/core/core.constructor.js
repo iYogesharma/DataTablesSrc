@@ -262,14 +262,13 @@ if ( oInit.aoColumns === null )
 {
 	aoColumnsInit = [];
 	
-	if(oInit.source === null && oInit.ajax === null){
+	if(oInit.ajax === null){
 		for ( i=0, iLen=anThs.length ; i<iLen ; i++ )
 		{
 			aoColumnsInit.push( null );
 		}
 	}else{
-		oInit.ajax.type.toLowerCase() !== 'get' ? oInit.ajax.header = { 'X-CSRF-TOKEN': $('meta[name="csrsf-token"]').attr('content') } : '';
-
+		
 		aoColumnsInit=_fnAutoDetectColumns( nTrow );
 	}
 
