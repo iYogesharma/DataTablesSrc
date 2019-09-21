@@ -250,6 +250,7 @@ if ( $.inArray( true, $.map( stripeClasses, function(el, i) {
 var anThs = [];
 var aoColumnsInit;
 var nThead = this.getElementsByTagName('thead');
+var nTrow= $this.prop('rows')
 if ( nThead.length !== 0 )
 {
 	_fnDetectHeader( oSettings.aoHeader, nThead[0] );
@@ -260,10 +261,18 @@ if ( nThead.length !== 0 )
 if ( oInit.aoColumns === null )
 {
 	aoColumnsInit = [];
-	for ( i=0, iLen=anThs.length ; i<iLen ; i++ )
-	{
-		aoColumnsInit.push( null );
+	
+	if(oInit.source === null && oInit.ajax === null){
+		for ( i=0, iLen=anThs.length ; i<iLen ; i++ )
+		{
+			aoColumnsInit.push( null );
+		}
+	}else{
+		oInit.ajax.type.toLowerCase() !== 'get' ? oInit.ajax.header = { 'X-CSRF-TOKEN': $('meta[name="csrsf-token"]').attr('content') } : '';
+
+		aoColumnsInit=_fnAutoDetectColumns( nTrow );
 	}
+
 }
 else
 {
